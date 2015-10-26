@@ -20,13 +20,13 @@ uniform vec2 TextureSize;
 varying vec2 TEX0;
 
 const mediump float BARREL_DISTORTION = 0.25;
-const mediump float rescale = 1.0 – (0.25 * BARREL_DISTORTION);
+const mediump float rescale = 1.0 - (0.25 * BARREL_DISTORTION);
 
 void main()
 {
 vec2 scale = TextureSize / InputSize;
 vec2 tex0 = TEX0 * scale;
-vec2 texcoord = tex0 – vec2(0.5);
+vec2 texcoord = tex0 - vec2(0.5);
 float rsq = texcoord.x * texcoord.x + texcoord.y * texcoord.y;
 texcoord = texcoord + (texcoord * (BARREL_DISTORTION * rsq));
 texcoord *= rescale;
