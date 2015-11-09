@@ -1,5 +1,5 @@
-# barrel distortion only shader from davej
-# http://blog.petrockblock.com/forums/topic/help-with-opelgl-barrel-distortion/#post-106535
+// barrel distortion only shader from davej
+// http://blog.petrockblock.com/forums/topic/help-with-opelgl-barrel-distortion/#post-106535
 
 #if defined(VERTEX)
 uniform mediump mat4 MVPMatrix;
