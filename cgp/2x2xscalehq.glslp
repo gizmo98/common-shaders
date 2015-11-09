@@ -1,7 +1,7 @@
 shaders = "3"
 shader0 = "../misc/image-adjustment.glsl"
-shader1 = "../scalehq/2xScaleHQ.glsl"
-shader2 = "../windowed/jinc2-sharper.glsl"
+shader1 = "../scalehq/shaders/2xScaleHQ.glsl"
+shader2 = "../windowed/shaders/jinc2-sharper.glsl"
 
 filter_linear0 = "false"
 

@@ -1,9 +1,9 @@
 #try to sharpen blended output with Jinc2 set with very low Window Sinc parameter
 
 shaders = "4"
-shader0 = "../../crt/tvout-tweaks.glsl"
+shader0 = "../../crt/shaders/tvout-tweaks.glsl"
 shader1 = "../../misc/image-adjustment.glsl"
-shader2 = "../../windowed/jinc2-sharper.glsl"
+shader2 = "../../windowed/shaders/jinc2-sharper.glsl"
 shader3 = "../../misc/interlacing.glsl"
 
 scale_type_x0 = "source"

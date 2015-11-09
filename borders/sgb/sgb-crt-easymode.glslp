@@ -1,6 +1,6 @@
 shaders = "2"
 shader0 = "../resources/imgborder-sgb.glsl"
-shader1 = "../../crt/crt-easymode.glsl"
+shader1 = "../../crt/shaders/crt-easymode.glsl"
 
 scale_type_x0 = "absolute"
 scale_x0 = "256"

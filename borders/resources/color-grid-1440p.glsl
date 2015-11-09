@@ -6,8 +6,8 @@
 #define COMPAT_ATTRIBUTE in
 #define COMPAT_TEXTURE texture
 #else
-#define COMPAT_VARYING varying 
-#define COMPAT_ATTRIBUTE attribute 
+#define COMPAT_VARYING varying
+#define COMPAT_ATTRIBUTE attribute
 #define COMPAT_TEXTURE texture2D
 #endif
 
@@ -139,6 +139,7 @@ void main()
     vec2 _pa;
     vec4 _colorgrid;
     vec4 _frame;
+    vec2 _fragcoord;
     vec4 _background;
     vec3 _TMP17;
     _px = (1.00000000E+03*(-TextureSize.xy + 8.00000000E+00*(TEX0.xy*(TextureSize.xy/InputSize.xy)).xy))/TextureSize.y;
@@ -167,8 +168,12 @@ void main()
     _TMP17 = _co*_pa.x*_pa.y;
     _colorgrid = vec4(_TMP17.x, _TMP17.y, _TMP17.z, 1.00000000E+00);
     _frame = COMPAT_TEXTURE(Texture, TEX0.xy);
+    _fragcoord = TEX0.xy*(TextureSize.xy/InputSize.xy);
     _TMP6 = COMPAT_TEXTURE(bg, TEX1.xy);
     _background = vec4(_TMP6.x, _TMP6.y, _TMP6.z, _TMP6.w);
+    if (_fragcoord.x < 1.00000000E+00 && _fragcoord.x > 0.00000000E+00 && _fragcoord.y < 1.00000000E+00 && _fragcoord.y > 0.00000000E+00) { 
+        _background.w = 0.00000000E+00;
+    } 
     _ret_0 = _frame + _background.w*(_colorgrid - _frame);
     FragColor = _ret_0;
     return;

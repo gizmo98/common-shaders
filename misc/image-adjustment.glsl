@@ -6,8 +6,8 @@
 #define COMPAT_ATTRIBUTE in
 #define COMPAT_TEXTURE texture
 #else
-#define COMPAT_VARYING varying 
-#define COMPAT_ATTRIBUTE attribute 
+#define COMPAT_VARYING varying
+#define COMPAT_ATTRIBUTE attribute
 #define COMPAT_TEXTURE texture2D
 #endif
 
@@ -106,6 +106,7 @@ float _TMP2;
 float _TMP1;
 vec4 _TMP0;
 uniform sampler2D Texture;
+input_dummy _IN1;
 vec3 _TMP29;
 COMPAT_VARYING vec4 TEX0;
  
@@ -116,8 +117,10 @@ uniform COMPAT_PRECISION vec2 TextureSize;
 uniform COMPAT_PRECISION vec2 InputSize;
 void main()
 {
+    vec2 _fragcoord;
     vec3 _satColor;
     vec3 _conColor;
+    _fragcoord = TEX0.xy*(TextureSize.xy/InputSize.xy);
     _TMP0 = COMPAT_TEXTURE(Texture, TEX0.xy);
     _TMP1 = dot(_TMP0.xyz, vec3( 2.12599993E-01, 7.15200007E-01, 7.22000003E-02));
     _satColor = vec3(_TMP1, _TMP1, _TMP1) + (_TMP0.xyz - vec3(_TMP1, _TMP1, _TMP1));
@@ -128,7 +131,16 @@ void main()
     _conColor = vec3(_TMP2, _TMP3, _TMP4);
     _TMP5 = min(vec3( 1.00000000E+00, 1.00000000E+00, 1.00000000E+00), _conColor);
     _TMP29 = max(vec3( 0.00000000E+00, 0.00000000E+00, 0.00000000E+00), _TMP5);
-    _ret_0 = vec4(_TMP29.x, _TMP29.y, _TMP29.z, 1.00000000E+00);
+    _conColor = _TMP29;
+    if (_fragcoord.y > 0.00000000E+00 && _fragcoord.y < 1.00000000E+00) { 
+    } else {
+        _conColor = vec3( 0.00000000E+00, 0.00000000E+00, 0.00000000E+00);
+    } 
+    if (_fragcoord.x > 0.00000000E+00 && _fragcoord.x < 1.00000000E+00) { 
+    } else {
+        _conColor = vec3( 0.00000000E+00, 0.00000000E+00, 0.00000000E+00);
+    } 
+    _ret_0 = vec4(_conColor.x, _conColor.y, _conColor.z, 1.00000000E+00);
     FragColor = _ret_0;
     return;
 } 

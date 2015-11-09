@@ -6,8 +6,8 @@
 #define COMPAT_ATTRIBUTE in
 #define COMPAT_TEXTURE texture
 #else
-#define COMPAT_VARYING varying 
-#define COMPAT_ATTRIBUTE attribute 
+#define COMPAT_VARYING varying
+#define COMPAT_ATTRIBUTE attribute
 #define COMPAT_TEXTURE texture2D
 #endif
 
@@ -159,9 +159,10 @@ void main()
     float _edge1;
     vec4 _snowscape;
     vec4 _frame;
+    vec2 _fragcoord;
     vec4 _background;
     _uv = TEX0.xy*(TextureSize.xy/InputSize.xy);
-    _acc = vec3( 0.00000000E+00, 0.00000000E+00, 0.00000000E+00);
+    _acc = vec3( 2.00000003E-01, 1.00000001E-01, 5.00000000E-01);
     _a0030 = float(FrameCount)*1.00000001E-01;
     _TMP1 = sin(_a0030);
     _dof = 5.00000000E+00*_TMP1;
@@ -212,8 +213,12 @@ void main()
     } 
     _snowscape = vec4(_acc.x, _acc.y, _acc.z, 1.00000000E+00);
     _frame = COMPAT_TEXTURE(Texture, TEX0.xy);
+    _fragcoord = TEX0.xy*(TextureSize.xy/InputSize.xy);
     _TMP16 = COMPAT_TEXTURE(bg, TEX1.xy);
     _background = vec4(_TMP16.x, _TMP16.y, _TMP16.z, _TMP16.w);
+    if (_fragcoord.x < 1.00000000E+00 && _fragcoord.x > 0.00000000E+00 && _fragcoord.y < 1.00000000E+00 && _fragcoord.y > 0.00000000E+00) { 
+        _background.w = 0.00000000E+00;
+    } 
     _ret_0 = _frame + _background.w*(_snowscape - _frame);
     FragColor = _ret_0;
     return;

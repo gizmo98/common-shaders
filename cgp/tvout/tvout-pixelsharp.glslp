@@ -1,5 +1,5 @@
 shaders = "3"
-shader0 = "../../crt/tvout-tweaks.glsl"
+shader0 = "../../crt/shaders/tvout-tweaks.glsl"
 shader1 = "../../misc/image-adjustment.glsl"
 shader2 = "../../stock.glsl"
 

@@ -1,6 +1,6 @@
 shaders = 2
-shader0 = ../xbr-hybrid/2xbr-hybrid.glsl
-shader1 = ../bicubic/bicubic-fast.glsl
+shader0 = ../xbr/shaders/xbr-hybrid/2xbr-hybrid.glsl
+shader1 = ../bicubic/shaders/bicubic-fast.glsl
 
 filter_linear0 = false
 filter_linear1 = false
