@@ -1,6 +1,21 @@
 // barrel distortion only shader from davej
 // http://blog.petrockblock.com/forums/topic/help-with-opelgl-barrel-distortion/#post-106535
 
+/* COMPATIBILITY
+   - GLSL compilers
+*/
+
+/*
+    barrel-distortion
+
+    Copyright (C) 2015 davej
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by the Free
+    Software Foundation; either version 2 of the License, or (at your option)
+    any later version.
+*/
+
 #if defined(VERTEX)
 uniform mediump mat4 MVPMatrix;
 attribute mediump vec4 VertexCoord;
