@@ -1,5 +1,12 @@
-#define BARREL_DISTORTION_X 0.15
-#define BARREL_DISTORTION_Y 0.25
+#pragma parameter BARREL_DISTORTION_X "Curvature - sides" 0.10 0.0 1.0 0.01
+#pragma parameter BARREL_DISTORTION_Y "Curvature - top/bottom" 0.15 0.0 1.0 0.01
+#ifdef PARAMETER_UNIFORM
+uniform float BARREL_DISTORTION_X;
+uniform float BARREL_DISTORTION_Y;
+#else
+#define BARREL_DISTORTION_Y 0.10
+#define BARREL_DISTORTION_Y 0.15
+#endif
 
 /* COMPATIBILITY
    - GLSL compilers
@@ -42,9 +49,9 @@ void main()
 }
 #elif defined(FRAGMENT)
 
-#define BARREL_DISTORTION vec2(BARREL_DISTORTION_X, BARREL_DISTORTION_Y)
+vec2 BARREL_DISTORTION = vec2(BARREL_DISTORTION_X, BARREL_DISTORTION_Y);
 // Barrel distortion shrinks the display area a bit, this will allow us to counteract that.
-const vec2 barrelScale = 1.0 - (0.23 * BARREL_DISTORTION);
+vec2 barrelScale = 1.0 - (0.23 * BARREL_DISTORTION);
 
 vec2 Distort(vec2 coord)
 {

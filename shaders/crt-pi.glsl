@@ -1,12 +1,33 @@
+#pragma parameter BARREL_DISTORTION_X "Curvature - sides" 0.10 0.0 1.0 0.01
+#pragma parameter BARREL_DISTORTION_Y "Curvature - top/bottom" 0.15 0.0 1.0 0.01
+#pragma parameter MASK_BRIGHTNESS "Mask brightness" 0.75 0.0 1.0 0.01
+#pragma parameter SCAN_LINE_WEIGHT "Scanline weight" 6.0 0.0 15.0 0.1
+#pragma parameter BLOOM_FACTOR "Bloom factor" 1.5 0.0 5.0 0.01
+#pragma parameter INPUT_GAMMA "Input gamma" 2.4 0.0 5.0 0.01
+#pragma parameter OUTPUT_GAMMA "Output gamma" 2.2 0.0 5.0 0.01
+
+// Haven't put these as parameters as it would slow the code down.
 #define MULTISAMPLE
 #define CURVATURE
-#define BARREL_DISTORTION_X 0.15
-#define BARREL_DISTORTION_Y 0.25
+
+
+#ifdef PARAMETER_UNIFORM
+uniform float BARREL_DISTORTION_X;
+uniform float BARREL_DISTORTION_Y;
+uniform float MASK_BRIGHTNESS;
+uniform float SCAN_LINE_WEIGHT;
+uniform float BLOOM_FACTOR;
+uniform float INPUT_GAMMA;
+uniform float OUTPUT_GAMMA;
+#else
+#define BARREL_DISTORTION_X 0.10
+#define BARREL_DISTORTION_Y 0.15
 #define MASK_BRIGHTNESS 0.75
 #define SCAN_LINE_WEIGHT 6.0
 #define BLOOM_FACTOR 1.5
 #define INPUT_GAMMA 2.4
 #define OUTPUT_GAMMA 2.2
+#endif
 
 /* COMPATIBILITY
    - GLSL compilers
@@ -56,11 +77,11 @@ void main()
 
 uniform sampler2D Texture;
 
-#define BARREL_DISTORTION vec2(BARREL_DISTORTION_X, BARREL_DISTORTION_Y)
+vec2 BARREL_DISTORTION = vec2(BARREL_DISTORTION_X, BARREL_DISTORTION_Y);
 // Barrel distortion shrinks the display area a bit, this will allow us to counteract that.
-const vec2 barrelScale = 1.0 - (0.23 * BARREL_DISTORTION);
+vec2 barrelScale = 1.0 - (0.23 * BARREL_DISTORTION);
 
-const float bloom = BLOOM_FACTOR / 3.0;
+float bloom = BLOOM_FACTOR / 3.0;
 
 vec2 Distort(vec2 coord)
 {
