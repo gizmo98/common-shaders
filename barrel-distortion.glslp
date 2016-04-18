@@ -1,5 +1,5 @@
 shaders = "1"
-shader0 = "barrel-distortion.glsl"
+shader0 = "shaders/barrel-distortion.glsl"
 wrap_mode0 = "clamp_to_border"
 mipmap_input0 = "false"
 alias0 = ""
